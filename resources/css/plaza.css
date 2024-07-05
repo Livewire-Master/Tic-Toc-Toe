@@ -1,0 +1,52 @@
+
+@font-face {
+    font-family: 'Plaza Sans Text';
+    src: url('../fonts/plaza/Plaza-RegularText.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Plaza Sans';
+    src: url('../fonts/plaza/Plaza-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Plaza Sans';
+    src: url('../fonts/plaza/Plaza-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Plaza Sans';
+    src: url('../fonts/plaza/Plaza-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Plaza Sans Text';
+    src: url('../fonts/plaza/Plaza-SemiBoldText.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+.plaza-sans-text {
+    font-family: "Plaza Sans Text", serif;
+}
+
+.plaza-sans {
+    font-family: "Plaza Sans", serif;
+}
+
+* {
+    @apply plaza-sans-text;
+}

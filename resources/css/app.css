@@ -1,0 +1,9 @@
+@import "plaza.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.animate {
+    @apply transition-all duration-300;
+}
