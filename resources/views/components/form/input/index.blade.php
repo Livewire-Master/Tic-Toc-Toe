@@ -20,9 +20,11 @@ $icon_classes = $attributes['icon-classes'] ?? 'w-6 h-6';
         />
     </label>
 
-    <div class="px-2">
-        @error($attributes['wire:model'])
-        <p class="text-danger-400 text-xs">{{ $message }}</p>
-        @enderror
-    </div>
+    @isset($attributes['wire:model'])
+        <div class="px-2">
+            @error($attributes['wire:model'])
+            <p class="text-danger-400 text-xs">{{ $message }}</p>
+            @enderror
+        </div>
+    @endisset
 </div>
