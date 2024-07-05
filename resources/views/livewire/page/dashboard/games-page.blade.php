@@ -15,45 +15,29 @@
     </div>
 
     <div class="grid grid-cols-4 gap-8">
-        <div class="bg-secondary-900 border border-secondary-800 rounded-lg p-4 flex flex-col gap-4">
-            <h3 class="text-lg">
-                Total Plays
-            </h3>
-            <p class="text-4xl font-bold plaza-sans">
-                1096
-                <span class="text-sm font-medium">plays</span>
-            </p>
-        </div>
+        <x-dashboard.stat.card.simple
+            title="Total Plays"
+            amount="0"
+            suffix="plays"
+        />
 
-        <div class="bg-secondary-900 border border-secondary-800 rounded-lg p-4 flex flex-col gap-4">
-            <h3 class="text-lg">
-                Online Players
-            </h3>
-            <p class="text-4xl font-bold plaza-sans">
-                50
-                <span class="text-sm font-medium">players</span>
-            </p>
-        </div>
+        <x-dashboard.stat.card.simple
+            title="Online Players"
+            amount="0"
+            suffix="players"
+        />
 
-        <div class="bg-secondary-900 border border-secondary-800 rounded-lg p-4 flex flex-col gap-4">
-            <h3 class="text-lg">
-                Total Bet
-            </h3>
-            <p class="text-4xl font-bold plaza-sans">
-                2B
-                <span class="text-sm font-medium">coins</span>
-            </p>
-        </div>
+        <x-dashboard.stat.card.simple
+            title="Total Bet"
+            amount="0"
+            suffix="coins"
+        />
 
-        <div class="bg-secondary-900 border border-secondary-800 rounded-lg p-4 flex flex-col gap-4">
-            <h3 class="text-lg">
-                Available Boards
-            </h3>
-            <p class="text-4xl font-bold plaza-sans">
-                12
-                <span class="text-sm font-medium">boards</span>
-            </p>
-        </div>
+        <x-dashboard.stat.card.simple
+            title="Available Boards"
+            amount="0"
+            suffix="boards"
+        />
     </div>
 
     <div class="flex flex-col gap-4">
@@ -62,29 +46,11 @@
             <!-- Heading -->
             <div class="px-4 py-4 flex items-center justify-between">
                 <div></div>
-                <div class="flex flex-col gap-1" x-data="{focused: false, content: ''}">
-                    <label class="relative flex items-center">
-                        <input
-                            @focus="focused = true"
-                            @blur="focused = false"
-                            x-model="content"
-                            type="text"
-                            class="w-full pl-10 pr-4 py-2 rounded-lg
-                                    border-2 outline-none animate
-                                    text-white bg-secondary-800
-                                    border-secondary-700 focus:border-primary-600
-                                    placeholder:text-secondary-600"
-                            placeholder="Enter game code"
-                        >
-
-                        <svg class="w-5 h-5 absolute left-3 animate text-secondary-500"
-                             viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M9.49999 3L6.49999 21M17.5 3L14.5 21M20.5 8H3.5M19.5 16H2.5"
-                                  stroke="currentColor"
-                                  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </label>
-                </div>
+                <x-form.input
+                    icon="hashtag"
+                    placeholder="Enter game code"
+                    icon-classes="w-5 h-5"
+                />
             </div>
 
             <!-- Titles -->

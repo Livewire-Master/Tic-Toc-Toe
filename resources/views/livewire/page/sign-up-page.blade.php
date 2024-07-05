@@ -9,6 +9,7 @@
                 wire:model="display_name"
                 type="text"
                 icon="hashtag"
+                icon-classes="w-5 h-5"
                 placeholder="Enter your display name"
             />
 

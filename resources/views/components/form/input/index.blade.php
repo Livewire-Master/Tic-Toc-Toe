@@ -1,18 +1,22 @@
 @props(['icon'])
 
-<div class="flex flex-col gap-2" x-data="{focused: false, content: ''}">
+@php
+$icon_classes = $attributes['icon-classes'] ?? 'w-6 h-6';
+@endphp
+
+<div class="flex flex-col gap-2" x-data="{focused: false}">
     <label class="relative flex items-center">
-        <input @focus="focused = true" @blur="focused = false" x-model="content"
-               {{ $attributes }}
-               class="w-full pl-10 pr-4 py-2 rounded-lg
+        <input @focus="focused = true" @blur="focused = false"
+               {{ $attributes->merge(['class' => 'w-full pl-10 pr-4 py-2 rounded-lg
                                     border-2 outline-none animate
                                     text-white bg-secondary-800
                                     border-secondary-700 focus:border-primary-600
-                                    placeholder:text-secondary-600">
+                                    placeholder:text-secondary-600 disabled:text-secondary-100/50 disabled:cursor-not-allowed']) }}
+        >
 
         <x-dynamic-component
             component="icon.{{ $icon }}"
-            class="w-6 h-6 absolute left-3 animate text-secondary-500"
+            class="absolute left-3 animate text-secondary-500 {{ $icon_classes }}"
         />
     </label>
 

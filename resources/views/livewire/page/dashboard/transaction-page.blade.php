@@ -9,65 +9,42 @@
     <div class="flex items-start justify-between gap-32">
         <div class="flex flex-col gap-8 grow">
             <div class="grid grid-cols-4 gap-8">
-                <div class="bg-secondary-900 border border-secondary-800 rounded-lg p-4 flex flex-col gap-4">
-                    <h3 class="text-lg">
-                        Total Charge
-                    </h3>
-                    <p class="text-4xl font-bold plaza-sans">
-                        4K
-                        <span class="text-sm font-medium">coins</span>
-                    </p>
-                </div>
+                <x-dashboard.stat.card.simple
+                    title="Total Charge"
+                    amount="0"
+                    suffix="coins"
+                />
 
-                <div class="bg-secondary-900 border border-secondary-800 rounded-lg p-4 flex flex-col gap-4">
-                    <h3 class="text-lg">
-                        Total Withdraw
-                    </h3>
-                    <p class="text-4xl font-bold plaza-sans">
-                        2K
-                        <span class="text-sm font-medium">coins</span>
-                    </p>
-                </div>
+                <x-dashboard.stat.card.simple
+                    title="Total Withdraw"
+                    amount="0"
+                    suffix="coins"
+                />
 
-                <div class="bg-secondary-900 border border-secondary-800 rounded-lg p-4 flex flex-col gap-4">
-                    <h3 class="text-lg">
-                        Total Win
-                    </h3>
-                    <p class="text-4xl font-bold plaza-sans">
-                        100
-                        <span class="text-sm font-medium">coins</span>
-                    </p>
-                </div>
+                <x-dashboard.stat.card.simple
+                    title="Total Win"
+                    amount="0"
+                    suffix="coins"
+                />
 
-                <div class="bg-secondary-900 border border-secondary-800 rounded-lg p-4 flex flex-col gap-4">
-                    <h3 class="text-lg">
-                        Total Loss
-                    </h3>
-                    <p class="text-4xl font-bold plaza-sans">
-                        50
-                        <span class="text-sm font-medium">coins</span>
-                    </p>
-                </div>
+                <x-dashboard.stat.card.simple
+                    title="Total Loss"
+                    amount="0"
+                    suffix="coins"
+                />
 
-                <div class="col-span-2 bg-secondary-900 border border-secondary-800 rounded-lg p-4 flex flex-col gap-4">
-                    <h3 class="text-lg">
-                        Current Balance
-                    </h3>
-                    <p class="text-4xl font-bold plaza-sans">
-                        2K
-                        <span class="text-sm font-medium">coins</span>
-                    </p>
-                </div>
+                <x-dashboard.stat.card.simple
+                    class="col-span-2"
+                    title="Current Balance"
+                    amount="0"
+                    suffix="coins"
+                />
 
-                <div class="col-span-2 bg-secondary-900 border border-secondary-800 rounded-lg p-4 flex flex-col gap-4">
-                    <h3 class="text-lg">
-                        Last transaction
-                    </h3>
-                    <p class="text-4xl font-bold plaza-sans">
-                        2024-05-07
-                        <span class="text-sm font-medium">2 days ago</span>
-                    </p>
-                </div>
+                <x-dashboard.stat.card.simple
+                    class="col-span-2"
+                    title="Last Transaction"
+                    amount="2 Days ago"
+                />
             </div>
 
             <div class="flex flex-col gap-4">
