@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Enums\UserStatus\UserStatus;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Vite;
 
 class User extends Authenticatable
 {
@@ -18,6 +20,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'avatar',
         'display_name',
         'username',
         'email',
@@ -48,5 +51,15 @@ class User extends Authenticatable
             'password' => 'hashed',
             'status' => UserStatus::class,
         ];
+    }
+
+    /**
+     * Get user avatar's url.
+     */
+    public function avatar(): Attribute
+    {
+        return new Attribute(
+            get: fn($value) => isset($value) ? Storage::url($value) : Vite::asset('resources/images/user/profile-holder.png')
+        );
     }
 }

@@ -2,12 +2,11 @@
 
 namespace App\Livewire\Page\Dashboard;
 
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 
+#[Layout('components.layouts.dashboard')]
 class GamesPage extends Component
 {
-    public function render()
-    {
-        return view('livewire.page.dashboard.games-page');
-    }
+
 }
