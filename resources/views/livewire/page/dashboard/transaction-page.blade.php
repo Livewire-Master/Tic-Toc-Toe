@@ -1,10 +1,6 @@
 <div class="col-span-7 flex flex-col gap-8">
     <div class="flex items-center justify-between">
-        <div class="relative max-w-fit">
-            <h1 class="font-bold plaza-sans text-3xl">
-                Transactions
-            </h1>
-        </div>
+        <x-dashboard.page.title label="Transactions"/>
     </div>
     <div class="flex items-start justify-between gap-32">
         <div class="flex flex-col gap-8 grow">

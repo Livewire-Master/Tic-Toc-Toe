@@ -1,13 +1,6 @@
 <div class="flex flex-col gap-8">
     <div class="flex items-center justify-between">
-        <div class="relative max-w-fit">
-            <h1 class="font-bold plaza-sans text-3xl">
-                Games
-            </h1>
-            <span class="absolute -top-2 -right-7 text-sm">
-                    Live
-                </span>
-        </div>
+        <x-dashboard.page.title label="Games" promo="Live"/>
 
         <button class="px-4 py-2 rounded-lg bg-primary-600 animate hover:bg-primary-500">
             New Game

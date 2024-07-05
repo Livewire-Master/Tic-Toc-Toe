@@ -5,7 +5,6 @@ namespace App\Livewire\Page;
 use App\Enums\UserStatus\UserStatus;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\Rule;
 use Livewire\Attributes\Title;
 use Livewire\Component;
