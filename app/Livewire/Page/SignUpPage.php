@@ -2,6 +2,10 @@
 
 namespace App\Livewire\Page;
 
+use App\Enums\UserStatus\UserStatus;
+use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\Rule;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -27,5 +31,20 @@ class SignUpPage extends Component
     public function signup(): void
     {
         $this->validate();
+
+        $user = User::create(
+            [
+                'username' => $this->username,
+                'display_name' => $this->display_name,
+                'email' => $this->email,
+                'password' => $this->password,
+                'status' => UserStatus::Idle,
+                'last_activity' => Carbon::now()
+            ]
+        );
+
+        auth()->login($user);
+
+        $this->redirectRoute('page.dashboard.games', navigate: true);
     }
 }
