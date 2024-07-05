@@ -5,18 +5,20 @@
     <main class="w-full max-w-xs">
         <form class="w-full flex flex-col gap-4">
             <x-form.input
+                wire:model="email"
                 icon="email"
                 type="email"
                 placeholder="Enter your email address"
             />
 
             <x-form.input
+                wire:model="password"
                 icon="password"
                 type="password"
                 placeholder="Enter your password"
             />
 
-            <x-form.button label="login"/>
+            <x-form.button label="login" wire:click.prevent="login"/>
 
             <x-auth.link.captionable
                 caption="Does not have an account?"
