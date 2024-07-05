@@ -57,7 +57,9 @@
         />
     </div>
 
-    <button wire:click.prevent="updateProfileInfo" class="bg-primary-600 px-4 py-2 rounded-lg flex items-center justify-center plaza-sans uppercase hover:bg-primary-500 animate">
-        Save
-    </button>
+    <x-form.button
+        wire:click.prevent="updateProfileInfo"
+        label="Save"
+        type="primary"
+    />
 </div>

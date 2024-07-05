@@ -14,6 +14,12 @@ class ProfilePage extends Component
     #[Rule(['required', 'min:3', 'max:24'])]
     public string $display_name;
 
+    #[Rule(['required', 'min:3', 'max:32'])]
+    public string $old_password;
+
+    #[Rule(['required', 'min:3', 'max:32'])]
+    public string $new_password;
+
     /**
      * Mount the component
      */
@@ -27,7 +33,25 @@ class ProfilePage extends Component
      */
     public function updateProfileInfo(): void
     {
-        $this->validate();
+        $this->validateOnly('display_name');
+
+        auth()->user()->update(
+            [
+                'display_name' => $this->display_name
+            ]
+        );
+    }
+
+    /**
+     * Update user's password.
+     */
+    public function updatePassword(): void
+    {
+        if ($this->old_password === $this->new_password)
+        {
+            $this->addError('new_password', 'New password can not be the same as the old.');
+            return;
+        }
 
         auth()->user()->update(
             [
