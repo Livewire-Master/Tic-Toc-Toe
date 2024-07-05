@@ -7,8 +7,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Layout('components.layouts.dashboard')]
-#[Title('Transactions')]
-class TransactionPage extends Component
+#[Title('Profile')]
+class ProfilePage extends Component
 {
-
 }
