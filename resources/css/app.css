@@ -7,3 +7,7 @@
 .animate {
     @apply transition-all duration-300;
 }
+
+* {
+    @apply select-none;
+}
