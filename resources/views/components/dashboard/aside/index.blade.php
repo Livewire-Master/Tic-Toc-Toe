@@ -17,10 +17,5 @@
         href="{{ route('page.dashboard.profile') }}"
     />
 
-    <x-dashboard.aside.link
-        label="Logout"
-        icon="exit"
-        icon-class="rotate-180"
-        href="{{ route('logout') }}"
-    />
+    <x-dashboard.aside.logout/>
 </aside>

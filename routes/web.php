@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LogoutController;
 use App\Livewire\Page\Dashboard\GamesPage;
 use App\Livewire\Page\LandPage;
 use App\Livewire\Page\LoginPage;
@@ -9,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('', LandPage::class)->middleware('guest')->name('page.land');
 Route::get('login', LoginPage::class)->middleware('guest')->name('page.login');
 Route::get('sign-up', SignUpPage::class)->middleware('guest')->name('page.signup');
-Route::get('logout', GamesPage::class)->middleware('auth')->name('logout');
+Route::post('logout', [LogoutController::class, 'logout'])->middleware('auth')->name('logout');
 
 Route::get('dashboard/games', GamesPage::class)->middleware('auth')->name('page.dashboard.games');
 Route::get('dashboard/profile', GamesPage::class)->middleware('auth')->name('page.dashboard.profile');
