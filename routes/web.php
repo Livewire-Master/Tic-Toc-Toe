@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LogoutController;
 use App\Livewire\Page\Dashboard\GamesPage;
+use App\Livewire\Page\Dashboard\TransactionPage;
 use App\Livewire\Page\LandPage;
 use App\Livewire\Page\LoginPage;
 use App\Livewire\Page\SignUpPage;
@@ -13,5 +14,5 @@ Route::get('sign-up', SignUpPage::class)->middleware('guest')->name('page.signup
 Route::post('logout', [LogoutController::class, 'logout'])->middleware('auth')->name('logout');
 
 Route::get('dashboard/games', GamesPage::class)->middleware('auth')->name('page.dashboard.games');
+Route::get('dashboard/transactions', TransactionPage::class)->middleware('auth')->name('page.dashboard.transactions');
 Route::get('dashboard/profile', GamesPage::class)->middleware('auth')->name('page.dashboard.profile');
-Route::get('dashboard/transactions', GamesPage::class)->middleware('auth')->name('page.dashboard.transactions');
