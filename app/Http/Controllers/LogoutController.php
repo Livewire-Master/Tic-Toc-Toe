@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
+
 class LogoutController extends Controller
 {
-    public function logout()
+    public function logout(): RedirectResponse
     {
-        session()->invalidate();
         auth()->logout();
+        session()->invalidate();
+        session()->regenerateToken();
         return redirect()->route('page.login');
     }
 }
