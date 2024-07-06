@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\UserStatus\UserStatus;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
@@ -61,5 +62,13 @@ class User extends Authenticatable
         return new Attribute(
             get: fn($value) => isset($value) ? Storage::url($value) : Vite::asset('resources/images/user/profile-holder.png')
         );
+    }
+
+    /**
+     * Get the user's wallet
+     */
+    public function wallet(): HasOne
+    {
+        return $this->hasOne(Wallet::class);
     }
 }
