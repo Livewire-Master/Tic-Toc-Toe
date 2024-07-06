@@ -8,7 +8,7 @@ use App\Models\Transaction;
 
 class TransactionObserver
 {
-    public function creating(Transaction $transaction): void
+    public function created(Transaction $transaction): void
     {
         if ($transaction->status !== TransactionStatus::Success)
         {

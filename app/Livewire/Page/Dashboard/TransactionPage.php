@@ -29,13 +29,25 @@ class TransactionPage extends Component
     #[Locked]
     public string $selected_withdraw_amount = '';
 
+    #[Locked]
+    public int $balance;
+
+    public function mount()
+    {
+        $this->balance = $this->wallet->balance;
+    }
+
     public function switchPaymentTab(string $tab): void
     {
         $accepted_tabs = ['charge', 'withdraw'];
+        if ($tab === $this->current_payment_tab)
+            return;
 
         if (in_array($tab, $accepted_tabs)) {
             $this->current_payment_tab = $tab;
         }
+
+        $this->reset('selected_withdraw_amount', 'selected_charge_amount');
     }
 
     public function selectChargeAmount(string $amount): void
@@ -54,6 +66,9 @@ class TransactionPage extends Component
 
     public function charge(): void
     {
+        if (!in_array($this->selected_charge_amount, $this->acceptedChargeAmounts))
+            return;
+
         auth()->user()->wallet->transactions()->create(
             [
                 'amount' => $this->selected_charge_amount,
@@ -61,17 +76,31 @@ class TransactionPage extends Component
                 'status' => TransactionStatus::Success,
             ]
         );
+
+        $this->balance += (int)$this->selected_charge_amount;
+        $this->reset('selected_charge_amount');
     }
 
     public function withdraw(): void
     {
+        if (!in_array($this->selected_withdraw_amount, $this->acceptedWithdrawAmounts))
+            return;
+
+        $amount = $this->selected_withdraw_amount === 'All-in'
+            ? $this->wallet->balance
+            : $this->selected_withdraw_amount
+        ;
+
         auth()->user()->wallet->transactions()->create(
             [
-                'amount' => $this->selected_withdraw_amount,
+                'amount' => $amount,
                 'transaction_type' => TransactionType::Withdraw,
                 'status' => TransactionStatus::Success,
             ]
         );
+
+        $this->balance -= (int)$amount;
+        $this->reset('selected_withdraw_amount');
     }
 
     #[Computed]
@@ -101,7 +130,7 @@ class TransactionPage extends Component
     #[Computed]
     public function lastTransaction()
     {
-        return $this->transactions->first()?->created_at?->ago() ?? 'Never';
+        return $this->transactions->first()?->created_at ?? 'Never';
     }
 
     #[Computed]

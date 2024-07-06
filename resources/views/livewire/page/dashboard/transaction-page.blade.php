@@ -31,8 +31,8 @@
 
                 <x-dashboard.stat.card.simple
                     class="col-span-2"
-                    title="Current Balance {{ time() }}"
-                    :amount="$this->wallet->balance"
+                    title="Current Balance"
+                    :amount="$balance"
                     suffix="coins"
                 />
 
