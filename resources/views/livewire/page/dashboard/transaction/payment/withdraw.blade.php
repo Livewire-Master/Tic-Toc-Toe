@@ -8,7 +8,7 @@
                 <x-dashboard.transaction.payment.tab
                     wire:key="withdraw-amount-selector-{{ $loop->index }}"
                     :label="$amount"
-                    :key="strtolower($amount)"
+                    :key="$amount"
                     method="selectWithdrawAmount"
                     :selector="$selected_withdraw_amount"
                     color="danger"
