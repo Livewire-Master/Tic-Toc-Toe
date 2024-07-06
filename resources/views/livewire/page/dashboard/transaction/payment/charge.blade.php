@@ -17,6 +17,7 @@
         </div>
         <div></div>
         <x-form.button
+            wire:click.prevent="charge"
             label="Pay"
             type="primary"
         />

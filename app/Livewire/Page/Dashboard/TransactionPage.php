@@ -2,6 +2,9 @@
 
 namespace App\Livewire\Page\Dashboard;
 
+use App\Enums\TransactionStatus\TransactionStatus;
+use App\Enums\TransactionType\TransactionType;
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Locked;
@@ -11,6 +14,7 @@ use Livewire\Component;
 /**
  * @property array $acceptedChargeAmounts
  * @property array $acceptedWithdrawAmounts
+ * @property Collection $transactions
  */
 #[Layout('components.layouts.dashboard')]
 #[Title('Transactions')]
@@ -48,6 +52,28 @@ class TransactionPage extends Component
         }
     }
 
+    public function charge(): void
+    {
+        auth()->user()->wallet->transactions()->create(
+            [
+                'amount' => $this->selected_charge_amount,
+                'transaction_type' => TransactionType::Charge,
+                'status' => TransactionStatus::Success,
+            ]
+        );
+    }
+
+    public function withdraw(): void
+    {
+        auth()->user()->wallet->transactions()->create(
+            [
+                'amount' => $this->selected_withdraw_amount,
+                'transaction_type' => TransactionType::Withdraw,
+                'status' => TransactionStatus::Success,
+            ]
+        );
+    }
+
     #[Computed]
     public function acceptedChargeAmounts(): array
     {
@@ -58,5 +84,55 @@ class TransactionPage extends Component
     public function acceptedWithdrawAmounts(): array
     {
         return ['50', '100', '500', '1000', '2000', 'All-in'];
+    }
+
+    #[Computed]
+    public function wallet()
+    {
+        return auth()->user()->wallet;
+    }
+
+    #[Computed]
+    public function transactions()
+    {
+        return auth()->user()->wallet->transactions()->orderByDesc('created_at')->get();
+    }
+
+    #[Computed]
+    public function lastTransaction()
+    {
+        return $this->transactions->first()?->created_at?->ago() ?? 'Never';
+    }
+
+    #[Computed]
+    public function totalCharge()
+    {
+        return $this->total(TransactionType::Charge);
+    }
+
+    #[Computed]
+    public function totalWithdraw()
+    {
+        return $this->total(TransactionType::Withdraw);
+    }
+
+    #[Computed]
+    public function totalWin()
+    {
+        return $this->total(TransactionType::Win);
+    }
+
+    #[Computed]
+    public function totalLoss()
+    {
+        return $this->total(TransactionType::Loss);
+    }
+
+    public function total(TransactionType $type)
+    {
+        return $this->transactions
+            ->where('transaction_type', $type)
+            ->where('status', TransactionStatus::Success)
+            ->sum('amount');
     }
 }

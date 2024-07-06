@@ -7,39 +7,40 @@
             <div class="grid grid-cols-4 gap-8">
                 <x-dashboard.stat.card.simple
                     title="Total Charge"
-                    amount="0"
+                    :amount="$this->totalCharge"
                     suffix="coins"
                 />
 
                 <x-dashboard.stat.card.simple
                     title="Total Withdraw"
-                    amount="0"
+                    :amount="$this->totalWithdraw"
                     suffix="coins"
                 />
 
                 <x-dashboard.stat.card.simple
                     title="Total Win"
-                    amount="0"
+                    :amount="$this->totalWin"
                     suffix="coins"
                 />
 
                 <x-dashboard.stat.card.simple
                     title="Total Loss"
-                    amount="0"
+                    :amount="$this->totalLoss"
                     suffix="coins"
                 />
 
                 <x-dashboard.stat.card.simple
                     class="col-span-2"
-                    title="Current Balance"
-                    amount="0"
+                    title="Current Balance {{ time() }}"
+                    :amount="$this->wallet->balance"
                     suffix="coins"
                 />
 
                 <x-dashboard.stat.card.simple
+                    wire:key="latest-balance"
                     class="col-span-2"
                     title="Last Transaction"
-                    amount="2 Days ago"
+                    :amount="$this->lastTransaction"
                 />
             </div>
 

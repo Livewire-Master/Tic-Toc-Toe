@@ -17,6 +17,7 @@
         </div>
         <div></div>
         <x-form.button
+            wire:click.prevent="withdraw"
             label="Withdraw"
             type="danger"
         />

@@ -4,7 +4,6 @@ namespace App\Observers;
 
 use App\Models\User;
 use App\Models\Wallet;
-use Illuminate\Support\Facades\Log;
 
 class UserObserver
 {
@@ -13,7 +12,7 @@ class UserObserver
         Wallet::create(
             [
                 'user_id' => $user->id,
-                'balance' => 500
+                'balance' => 0
             ]
         );
     }
