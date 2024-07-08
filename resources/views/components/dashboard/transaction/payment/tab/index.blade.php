@@ -6,7 +6,8 @@
     'color' => 'primary',
     'colors' => [
         'primary' => 'bg-primary-500',
-        'danger' => 'bg-danger-500'
+        'danger' => 'bg-danger-400',
+        'warning' => 'bg-warning-500'
     ],
 ])
 <button

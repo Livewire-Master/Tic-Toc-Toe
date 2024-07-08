@@ -12,6 +12,6 @@
         key="withdraw"
         method="switchPaymentTab"
         :selector="$current_payment_tab"
-        color="danger"
+        color="warning"
     />
 </div>

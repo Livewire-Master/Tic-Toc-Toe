@@ -11,7 +11,7 @@
                     :key="$amount"
                     method="selectWithdrawAmount"
                     :selector="$selected_withdraw_amount"
-                    color="danger"
+                    color="warning"
                 />
             @endforeach
         </div>
@@ -19,7 +19,7 @@
         <x-form.button
             wire:click.prevent="withdraw"
             label="Withdraw"
-            type="danger"
+            type="warning"
         />
     </div>
 </div>
