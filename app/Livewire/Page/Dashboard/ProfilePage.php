@@ -16,11 +16,29 @@ class ProfilePage extends Component
 {
     use WithFileUploads;
 
+    #region Properties
+    /**
+     * Display Name
+     */
     public string $display_name;
-    public string $old_password;
-    public string $new_password;
-    public ?TemporaryUploadedFile $avatar = null;
 
+    /**
+     * Old Password
+     */
+    public string $old_password;
+
+    /**
+     * New Password
+     */
+    public string $new_password;
+
+    /**
+     * Temporary uploaded avatar for changing current one
+     */
+    public ?TemporaryUploadedFile $avatar = null;
+    #endregion
+
+    #region Validation Rules
     /**
      * Get validation rules based on the method.
      */
@@ -39,7 +57,9 @@ class ProfilePage extends Component
 
         return $_[$method];
     }
+    #endregion
 
+    #region Mount
     /**
      * Mount the component
      */
@@ -47,7 +67,9 @@ class ProfilePage extends Component
     {
         $this->display_name = auth()->user()->display_name;
     }
+    #endregion
 
+    #region Update functionality: Profile, Password
     /**
      * Update profile info based on user entries.
      */
@@ -104,4 +126,5 @@ class ProfilePage extends Component
             ]
         );
     }
+    #endregion
 }

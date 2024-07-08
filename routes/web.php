@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LogoutController;
+use App\Livewire\Page\Dashboard\Game\CreatePage as CreateNewGamePage;
 use App\Livewire\Page\Dashboard\GamesPage;
 use App\Livewire\Page\Dashboard\ProfilePage;
 use App\Livewire\Page\Dashboard\TransactionPage;
@@ -17,3 +18,4 @@ Route::post('logout', [LogoutController::class, 'logout'])->middleware('auth')->
 Route::get('dashboard/games', GamesPage::class)->middleware('auth')->name('page.dashboard.games');
 Route::get('dashboard/transactions', TransactionPage::class)->middleware('auth')->name('page.dashboard.transactions');
 Route::get('dashboard/profile', ProfilePage::class)->middleware('auth')->name('page.dashboard.profile');
+Route::get('dashboard/games/create', CreateNewGamePage::class)->middleware('auth')->name('page.dashboard.games.create');
