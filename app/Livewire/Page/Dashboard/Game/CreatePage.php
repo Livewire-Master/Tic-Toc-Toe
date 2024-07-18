@@ -2,6 +2,11 @@
 
 namespace App\Livewire\Page\Dashboard\Game;
 
+use App\Enums\Board\GameRoundsType\GameRoundsType;
+use App\Enums\Board\GameSpeedType\GameSpeedType;
+use App\Enums\Board\GameType\GameType;
+use App\Enums\Board\JoinFeeType\JoinFeeType;
+use App\Enums\Board\OpponentType\OpponentType;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -11,45 +16,17 @@ use Livewire\Component;
 #[Title('New Game')]
 class CreatePage extends Component
 {
-    public string $selected_join_fee = '';
+    public array $config_data = [];
 
-    public function selectJoinFee(string $key)
-    {
-        $this->selected_join_fee = $key;
-    }
-
-    /**
-     * Get the join fee options
-     */
     #[Computed]
-    public function joinFeeOptions(): array
+    public function configs(): array
     {
         return [
-            [
-                'key' => '5',
-                'label' => '5 Coins',
-                'color' => 'success',
-            ],
-            [
-                'key' => '10',
-                'label' => '10 Coins',
-                'color' => 'accent',
-            ],
-            [
-                'key' => '25',
-                'label' => '25 Coins',
-                'color' => 'info',
-            ],
-            [
-                'key' => '50',
-                'label' => '50 Coins',
-                'color' => 'warning',
-            ],
-            [
-                'key' => 'all-in',
-                'label' => 'All-in',
-                'color' => 'danger',
-            ],
+            ...OpponentType::config(),
+            ...GameType::config(),
+            ...JoinFeeType::config('Your Balance: ' . auth()->user()->wallet->balance . ' coins'),
+            ...GameSpeedType::config('Format: "Move:Bank" in seconds'),
+            ...GameRoundsType::config(),
         ];
     }
 }
