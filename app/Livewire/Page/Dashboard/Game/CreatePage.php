@@ -16,8 +16,14 @@ use Livewire\Component;
 #[Title('New Game')]
 class CreatePage extends Component
 {
+    /**
+     * Selected Configs
+     */
     public array $config_data = [];
 
+    /**
+     * Get the configs list
+     */
     #[Computed]
     public function configs(): array
     {
@@ -28,5 +34,10 @@ class CreatePage extends Component
             ...GameSpeedType::config('Format: "Move:Bank" in seconds'),
             ...GameRoundsType::config(),
         ];
+    }
+
+    public function selectConfig(string $identifier, mixed $key): void
+    {
+        $this->config_data[$identifier] = $key;
     }
 }

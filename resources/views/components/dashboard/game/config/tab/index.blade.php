@@ -2,6 +2,7 @@
     'title',
     'hint' => null,
     'options',
+    'identifier',
     'method',
     'selector',
     'key_prefix',
@@ -37,6 +38,7 @@
                 :key="$option['key']"
                 :label="$option['label']"
                 :color="$option['color']"
+                :identifier="$identifier"
                 :method="$method"
                 :selector="$selector"
             />

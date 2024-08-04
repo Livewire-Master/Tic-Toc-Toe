@@ -27,7 +27,7 @@ trait GameBoardConcerns
      */
     public static function translationKey(): string
     {
-        return basename(self::class);
+        return str(basename(self::class))->replace('\\', '-')->toString();
     }
 
     /**

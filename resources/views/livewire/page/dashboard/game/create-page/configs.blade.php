@@ -2,6 +2,7 @@
     @foreach($this->configs as $identifier => $config)
         <x-dashboard.game.config.tab
             :title="$config['title']"
+            :identifier="$identifier"
             method="selectConfig"
             :hint="$config['hint']"
             :selector="$config_data"
