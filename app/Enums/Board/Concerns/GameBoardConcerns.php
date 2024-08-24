@@ -7,6 +7,14 @@ use BackedEnum;
 trait GameBoardConcerns
 {
     /**
+     * Reject logic
+     */
+    public function reject(): bool
+    {
+        return false;
+    }
+
+    /**
      * Get the base translation key
      */
     protected static function baseTranslationKey(): string
@@ -93,6 +101,7 @@ trait GameBoardConcerns
     public static function pairs(): array
     {
         return collect(self::cases())
+            ->reject(fn (BackedEnum $item) => $item->reject())
             ->mapWithKeys(function (BackedEnum $item, int $index) {
                 $_ = [
                     'key' => $item->key(),

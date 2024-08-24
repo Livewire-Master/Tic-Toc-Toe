@@ -11,6 +11,8 @@
 
 <x-dashboard.header/>
 
+@stack('after::header')
+
 <section class="grow bg-gradient-to-br from-secondary-950 to-secondary-900 grid grid-cols-9 py-8 gap-16 px-8">
     <x-dashboard.aside/>
 

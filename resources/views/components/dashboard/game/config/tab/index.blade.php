@@ -44,4 +44,10 @@
             />
         @endforeach
     </div>
+
+    @error($identifier)
+    <p class="text-danger-500 text-sm">
+        {{ $message }}
+    </p>
+    @enderror
 </div>

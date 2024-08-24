@@ -28,10 +28,10 @@ return [
     GameSpeedType::translationKey() => [
         GameSpeedType::translationHeadlineKey() => 'Game Speed',
         GameSpeedType::translationLabelKey() => [
-            GameSpeedType::Speedy->key() => 'Speedy: (30, 300)',
-            GameSpeedType::Balanced->key() => 'Balanced: (30, 300)',
+            GameSpeedType::Speedy->key() => 'Speedy: (10, 100)',
+            GameSpeedType::Balanced->key() => 'Balanced: (20, 200)',
             GameSpeedType::Relaxed->key() => 'Relaxed: (30, 300)',
-            GameSpeedType::Freeze->key() => 'Freeze: (30, 300)',
+            GameSpeedType::Freeze->key() => 'Freeze: (60, 600)',
         ],
         GameSpeedType::translationColorKey() => [
             GameSpeedType::Speedy->key() => 'danger',

@@ -10,4 +10,17 @@ enum GameType: string
 
     case Freemium = 'freemium';
     case Gamble = 'gamble';
+
+    /**
+     * Reject logic
+     */
+    public function reject(): bool
+    {
+        if ($this === self::Gamble)
+        {
+            return auth()->user()->wallet->balance <= 0;
+        }
+
+        return false;
+    }
 }

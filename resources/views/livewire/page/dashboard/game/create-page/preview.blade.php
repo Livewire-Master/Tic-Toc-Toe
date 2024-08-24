@@ -1,3 +1,11 @@
+@php
+use App\Enums\Board\JoinFeeType\JoinFeeType;
+use App\Enums\Board\GameSpeedType\GameSpeedType;
+use App\Enums\Board\GameRoundsType\GameRoundsType;
+use App\Enums\Board\GameType\GameType;
+use App\Enums\Board\OpponentType\OpponentType;
+@endphp
+
 <div class="flex flex-col gap-4 w-full max-w-xs">
     <h2>
         Your game will create with this config
@@ -11,15 +19,15 @@
                     <div class="rounded-full p-0.5 ring-2 ring-success-300">
                         <div class="rounded-full w-12 h-12 overflow-hidden">
                             <img
-                                src="/src/images/cover.png"
-                                alt=""
+                                src="{{ auth()->user()->avatar }}"
+                                alt="{{ auth()->user()->display_name }}'s avatar"
                                 class="w-full h-full object-center object-cover"
                             >
                         </div>
                     </div>
                 </div>
                 <div class="flex flex-col gap-1">
-                    <p>John Doe (you)</p>
+                    <p>{{ auth()->user()->display_name }}</p>
                     <p class="flex gap-2 items-center">
                         Plays randomly
                     </p>
@@ -37,31 +45,74 @@
                     </div>
                 </div>
                 <div class="flex flex-col gap-1">
-                    <p>Someone</p>
+                    <p>
+                        @php
+                            if (isset($config_data[OpponentType::identifier()]))
+                            {
+                                echo OpponentType::tryFrom($config_data[OpponentType::identifier()]) === OpponentType::Computer
+                                ? __('Computer')
+                                : __('Someone');
+                            }
+                            else
+                            {
+                                echo __('Not Set');
+                            }
+                        @endphp
+                    </p>
                     <p class="flex gap-2 items-center">
                         Plays randomly
                     </p>
                 </div>
             </div>
         </div>
+
         <div class="flex flex-col gap-2">
             <h3 class="font-medium plaza-sans">Game Type</h3>
-            <p class="text-white">Gamble</p>
+            <p class="text-white">
+                {{
+                    isset($config_data[GameType::identifier()])
+                    ? GameType::tryFrom($config_data[GameType::identifier()])->label()
+                    : __('Not Set')
+                }}
+            </p>
         </div>
+
         <div class="flex flex-col gap-2">
             <h3 class="font-medium plaza-sans">Join Fee (Bet)</h3>
-            <p class="text-white">25 Coins for each - <span class="text-warning-200">(50 coins in total)</span></p>
+            <p class="text-white">
+                <span>
+                    {{
+                        isset($config_data[JoinFeeType::identifier()])
+                        ? JoinFeeType::tryFrom($config_data[JoinFeeType::identifier()])->label()
+                        : __('Not Set')
+                    }}
+                </span>
+            </p>
         </div>
+
         <div class="flex flex-col gap-2">
             <h3 class="font-medium plaza-sans">Game Speed</h3>
-            <p class="text-white">Fast - 30" move, 300" bank</p>
+            <p class="text-white">
+                {{
+                    isset($config_data[GameSpeedType::identifier()])
+                    ? GameSpeedType::tryFrom($config_data[GameSpeedType::identifier()])->label()
+                    : __('Not Set')
+                }}
+            </p>
         </div>
+
         <div class="flex flex-col gap-2">
             <h3 class="font-medium plaza-sans">Game Rounds</h3>
-            <p class="text-white">5 rounds</p>
+            <p class="text-white">
+                {{
+                    isset($config_data[GameRoundsType::identifier()])
+                    ? GameRoundsType::tryFrom($config_data[GameRoundsType::identifier()])->label()
+                    : __('Not Set')
+                }}
+            </p>
         </div>
     </div>
-    <button class="bg-primary-600 px-4 py-2 rounded-lg flex items-center justify-center plaza-sans uppercase hover:bg-primary-500 animate">
+    <button wire:click.prevent="create" class="bg-primary-600 px-4 py-2 rounded-lg flex items-center justify-center plaza-sans uppercase hover:bg-primary-500 animate">
         Create
     </button>
 </div>
